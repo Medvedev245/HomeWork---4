@@ -1,16 +1,19 @@
 //           77g6DThdx1oEOo77   -----  pasword mongo
 //  mongodb+srv://Ihor:77g6DThdx1oEOo77@cluster0.fmo3gi2.mongodb.net/my-contacts?retryWrites=true&w=majority
+
 import mongoose from "mongoose";
-import { DB_HOST } from "./config.js";
+
 import app from "./app.js";
-// const DB_HOST =
-//   "mongodb+srv://Ihor:77g6DThdx1oEOo77@cluster0.fmo3gi2.mongodb.net/my-contacts?retryWrites=true&w=majority";
+
+import { DB_HOST } from "./config.js";
+
+// const {DB_HOST, PORT = 3000} = process.env;
 
 mongoose
   .connect(DB_HOST)
   .then(() => {
     app.listen(3000, () => {
-      console.log("Server running. Use our API on port: 3000");
+      console.log("Database connection successful");
     });
   })
   .catch((error) => {
