@@ -5,3 +5,7 @@ const contactSchema = new Schema({
   email: String,
   phone: String,
 });
+
+const Contact = model("contact", contactSchema);
+
+export default Movie;
