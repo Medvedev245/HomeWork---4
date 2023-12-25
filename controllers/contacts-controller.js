@@ -6,6 +6,7 @@
 //   updateContactById,
 // } from "../models/contacts/index.js";
 import { HttpError } from "../Helpers/index.js";
+import Contact from "../../models/Contact";
 
 import {
   contactAddSchema,
@@ -14,8 +15,9 @@ import {
 
 const getAll = async (req, res, next) => {
   try {
-    console.log(req.params);
-    const result = await listContacts();
+    // console.log(req.params);
+    const result = await Contact.find();
+
     res.json(result);
   } catch (error) {
     next(error);
