@@ -42,16 +42,17 @@ const getAll = async (req, res, next) => {
 // };
 
 const add = async (req, res, next) => {
-  try {
-    const { error } = contactAddSchema.validate(req.body);
-    if (error) {
-      throw HttpError(400, error.message);
-    }
-    const result = await addContact(req.body);
-    res.status(201).json(result);
-  } catch (error) {
-    next(error);
-  }
+  //OLD
+  // try {
+  //   const { error } = contactAddSchema.validate(req.body);
+  //   if (error) {
+  //     throw HttpError(400, error.message);
+  //   }
+  const result = await addContact(req.body);
+  res.status(201).json(result);
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 // const updateById = async (req, res, next) => {
