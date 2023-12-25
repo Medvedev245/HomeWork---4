@@ -9,18 +9,18 @@ const contactsRouter = express.Router();
 contactsRouter.get("/", contactsController.getAll);
 
 // Все что после : Динамический маршрут - находится в req.params
-contactsRouter.get("/:contactId", contactsController.getById);
+// contactsRouter.get("/:contactId", contactsController.getById);
 
 //isEmptyBody - мидлвара проверяет пустой или нет?
-contactsRouter.post("/", isEmptyBody, contactsController.add);
+// contactsRouter.post("/", isEmptyBody, contactsController.add);
 
 //
-contactsRouter.put(
-  "/:contactId",
-  isEmptyBodyPut,
-  contactsController.updateById
-);
+// contactsRouter.put(
+//   "/:contactId",
+//   isEmptyBodyPut,
+//   contactsController.updateById
+// );
 
-contactsRouter.delete("/:contactId", contactsController.deleteById);
+// contactsRouter.delete("/:contactId", contactsController.deleteById);
 
 export default contactsRouter;
