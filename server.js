@@ -1,6 +1,3 @@
-//           77g6DThdx1oEOo77   -----  pasword mongo
-//  mongodb+srv://Ihor:77g6DThdx1oEOo77@cluster0.fmo3gi2.mongodb.net/my-contacts?retryWrites=true&w=majority
-
 import mongoose from "mongoose";
 
 import app from "./app.js";

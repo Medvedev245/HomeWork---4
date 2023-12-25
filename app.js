@@ -2,7 +2,7 @@ import express from "express"; // работа с апи
 import logger from "morgan"; //красиво логировать запрос
 import cors from "cors"; // ошибка корс
 
-// import contactsRouter from "./routes/api/contacts-router.js";
+import contactsRouter from "./routes/api/contacts-router.js";
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-// app.use("/api/contacts", contactsRouter);
+app.use("/api/contacts", contactsRouter);
 // если прийдет любой запрос /api/contacts - ищи его в обьекте contactsRouter
 
 app.use((req, res) => {
