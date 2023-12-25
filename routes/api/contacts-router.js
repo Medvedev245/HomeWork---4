@@ -12,7 +12,7 @@ contactsRouter.get("/", contactsController.getAll);
 // contactsRouter.get("/:contactId", contactsController.getById);
 
 //isEmptyBody - мидлвара проверяет пустой или нет?
-// contactsRouter.post("/", isEmptyBody, contactsController.add);
+contactsRouter.post("/", isEmptyBody, contactsController.add);
 
 //
 // contactsRouter.put(

@@ -1,25 +1,29 @@
 import { Schema, model } from "mongoose";
 //создаем магус схему и модель
-const contactSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Set name for contact"],
-  },
-  email: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  favorite: {
-    type: Boolean,
-    default: false,
-  },
 
-  //   name: String,
-  //   email: String,
-  //   phone: String,
-});
+import { handleSaveError } from "./hooks.js";
+
+const contactSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Set name for contact"],
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { versionKey: false }
+);
+
+contactSchema.post("save", handleSaveError);
 
 const Contact = model("contact", contactSchema);
 
