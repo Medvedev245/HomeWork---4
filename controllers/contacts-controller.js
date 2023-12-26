@@ -8,10 +8,7 @@
 import { HttpError } from "../Helpers/index.js";
 import Contact from "../models/Contact.js";
 
-import {
-  contactAddSchema,
-  contactUpdateSchema,
-} from "../schemas/contact-schema.js";
+import { contactAddSchema, contactUpdateSchema } from "../models/Contact.js";
 
 const getAll = async (req, res, next) => {
   try {
