@@ -23,6 +23,7 @@ const contactSchema = new Schema(
   { versionKey: false }
 );
 
+//mogoose chook
 contactSchema.post("save", handleSaveError);
 
 const Contact = model("contact", contactSchema);
