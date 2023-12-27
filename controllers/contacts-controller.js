@@ -20,32 +20,32 @@ const getAll = async (req, res, next) => {
   }
 };
 
-// const getById = async (req, res, next) => {
-//   try {
-//     /*
-//     console.log(req.params); достучаться
-//     до ключа - contactId: 'vza2RIzNGIwutCVCs4mCL'
-//   */
-//     const { contactId } = req.params;
-//     const result = await getContactById(contactId);
-//     if (!result) {
-//       throw HttpError(404, `Not found`);
-//     }
-//     return res.json(result);
-//   } catch (error) {
-//     //next(error) - ищет мидлвару с 4 параметрами
-//     next(error);
-//   }
-// };
+const getById = async (req, res, next) => {
+  try {
+    /*
+    console.log(req.params); достучаться
+    до ключа - contactId: 'vza2RIzNGIwutCVCs4mCL'
+  */
+    const { contactId } = req.params;
+    const result = await Contact.findById(contactId);
+    console.log(result);
+    if (!result) {
+      throw HttpError(404, `Not found`);
+    }
+    return res.json(result);
+  } catch (error) {
+    // console.log("result");
+    //next(error) - ищет мидлвару с 4 параметрами
+    next(error);
+  }
+};
 
 const add = async (req, res, next) => {
-  //OLD
   try {
     const { error } = contactAddSchema.validate(req.body);
     if (error) {
       throw HttpError(400, error.message);
     }
-    // const result = await addContact(req.body);
     const result = await Contact.create(req.body);
     res.status(201).json(result);
   } catch (error) {
@@ -88,7 +88,7 @@ const add = async (req, res, next) => {
 
 export default {
   getAll,
-  // getById,
+  getById,
   add,
   // updateById,
   // deleteById,
