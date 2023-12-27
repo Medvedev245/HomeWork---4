@@ -52,23 +52,25 @@ const add = async (req, res, next) => {
   }
 };
 
-// const updateById = async (req, res, next) => {
-//   try {
-//     const { error } = contactUpdateSchema.validate(req.body);
-//     if (error) {
-//       throw HttpError(404, "Not found");
-//     }
-//     const { contactId } = req.params;
+const updateById = async (req, res, next) => {
+  try {
+    const { error } = contactUpdateSchema.validate(req.body);
+    if (error) {
+      throw HttpError(404, "Not found");
+    }
+    const { contactId } = req.params;
 
-//     const result = await updateContactById(contactId, req.body);
-//     if (!result) {
-//       throw HttpError(404, `Not found`);
-//     }
-//     res.json(result);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
+      new: true,
+    });
+    if (!result) {
+      throw HttpError(404, `Not found`);
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // const deleteById = async (req, res, next) => {
 //   try {
@@ -89,6 +91,6 @@ export default {
   getAll,
   getById,
   add,
-  // updateById,
+  updateById,
   // deleteById,
 };

@@ -16,12 +16,12 @@ contactsRouter.get("/:contactId", isValidId, contactsController.getById);
 contactsRouter.post("/", isEmptyBody, contactsController.add);
 
 //
-// contactsRouter.put(
-//   "/:contactId",
-//   isValidId,
-//   isEmptyBodyPut,
-//   contactsController.updateById
-// );
+contactsRouter.put(
+  "/:contactId",
+  isValidId,
+  isEmptyBodyPut,
+  contactsController.updateById
+);
 
 // contactsRouter.delete("/:contactId", isValidId, contactsController.deleteById);
 
