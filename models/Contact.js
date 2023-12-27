@@ -38,6 +38,11 @@ export const contactAddSchema = Joi.object({
 });
 
 contactSchema.post("save", handleSaveError);
+contactSchema.pre("findOneAndUpdate", function (next) {
+  this.options.new = true;
+  this.options.runValidators = true;
+  next();
+});
 contactSchema.post("findOneAndUpdate", handleSaveError);
 
 const Contact = model("contact", contactSchema);
