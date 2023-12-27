@@ -34,7 +34,6 @@ const getById = async (req, res, next) => {
     }
     return res.json(result);
   } catch (error) {
-    // console.log("result");
     //next(error) - ищет мидлвару с 4 параметрами
     next(error);
   }
