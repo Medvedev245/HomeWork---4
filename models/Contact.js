@@ -38,6 +38,7 @@ export const contactAddSchema = Joi.object({
 });
 
 contactSchema.post("save", handleSaveError);
+contactSchema.post("findOneAndUpdate", handleSaveError);
 
 const Contact = model("contact", contactSchema);
 
