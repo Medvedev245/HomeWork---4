@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 import Joi from "joi";
 //создаем магус схему и модель
 
-import { handleSaveError } from "./hooks.js";
+import { handleSaveError, addUpdateSettings } from "./hooks.js";
 
 const contactSchema = new Schema(
   {
@@ -38,11 +38,7 @@ export const contactAddSchema = Joi.object({
 });
 
 contactSchema.post("save", handleSaveError);
-contactSchema.pre("findOneAndUpdate", function (next) {
-  this.options.new = true;
-  this.options.runValidators = true;
-  next();
-});
+contactSchema.pre("findOneAndUpdate", addUpdateSettings);
 contactSchema.post("findOneAndUpdate", handleSaveError);
 
 const Contact = model("contact", contactSchema);
@@ -51,6 +47,11 @@ export const contactUpdateSchema = Joi.object({
   name: Joi.string(),
   email: Joi.string(),
   phone: Joi.number(),
+  favorite: Joi.boolean(),
+});
+
+export const contactUpdateFavoriteShema = Joi.object({
+  favorite: Joi.boolean().required(),
 });
 
 //mogoose chook

@@ -1,8 +1,13 @@
 import express from "express";
 import contactsController from "../../controllers/contacts-controller.js";
 // import isValidId from "../../middlewares/isValidId.js";
-import { isEmptyBody, isEmptyBodyPut } from "../../middlewares/isEmptyBody.js";
+import {
+  isEmptyBody,
+  isEmptyBodyPatch,
+  isEmptyBodyPut,
+} from "../../middlewares/isEmptyBody.js";
 import { isValidId } from "../../middlewares/isValidId.js";
+import { contactUpdateFavoriteShema } from "../../models/Contact.js";
 
 const contactsRouter = express.Router();
 
@@ -20,6 +25,15 @@ contactsRouter.put(
   "/:contactId",
   isValidId,
   isEmptyBodyPut,
+  //   contactUpdateFavoriteShema,
+  contactsController.updateById
+);
+
+// обновление по АйДи / Какое поле надо обновить
+contactsRouter.patch(
+  "/:contactId/favorite",
+  isValidId,
+  isEmptyBodyPatch,
   contactsController.updateById
 );
 

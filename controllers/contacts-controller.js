@@ -28,7 +28,6 @@ const getById = async (req, res, next) => {
   */
     const { contactId } = req.params;
     const result = await Contact.findById(contactId);
-    console.log(result);
     if (!result) {
       throw HttpError(404, `Not found`);
     }
@@ -54,21 +53,25 @@ const add = async (req, res, next) => {
 
 const updateById = async (req, res, next) => {
   try {
+    console.log("2");
     const { error } = contactUpdateSchema.validate(req.body);
     if (error) {
+      console.log(error);
       throw HttpError(404, "Not found");
     }
     const { contactId } = req.params;
-
+    console.log(contactId);
     const result = await Contact.findByIdAndUpdate(contactId, req.body, {
       new: true,
       runValidators: true,
     });
     if (!result) {
+      console.log("3");
       throw HttpError(404, `Not found`);
     }
     res.json(result);
   } catch (error) {
+    console.log("4");
     next(error);
   }
 };

@@ -16,4 +16,10 @@ export const isEmptyBodyPut = (req, res, next) => {
   next();
 };
 
-console.log("object");
+export const isEmptyBodyPatch = (req, res, next) => {
+  const { length } = Object.keys(req.body);
+  if (!length) {
+    return next(HttpError(400, "missing field favorite"));
+  }
+  next();
+};
