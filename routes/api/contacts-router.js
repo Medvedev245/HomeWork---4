@@ -6,8 +6,8 @@ import {
   isEmptyBodyPatch,
   isEmptyBodyPut,
 } from "../../middlewares/isEmptyBody.js";
-// import { isValidId } from "../../middlewares/isValidId.js";
-// import { contactUpdateFavoriteShema } from "../../models/Contact.js";
+import { isValidId } from "../../middlewares/isValidId.js";
+import { contactUpdateFavoriteShema } from "../../models/Contact.js";
 
 const contactsRouter = express.Router();
 
