@@ -25,7 +25,7 @@ contactsRouter.put(
   "/:contactId",
   isValidId,
   isEmptyBodyPut,
-  //   contactUpdateFavoriteShema,
+  // contactUpdateFavoriteShema,
   contactsController.updateById
 );
 
