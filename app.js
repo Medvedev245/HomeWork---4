@@ -2,6 +2,7 @@ import express from "express"; // работа с апи
 import logger from "morgan"; //красиво логировать запрос
 import cors from "cors"; // ошибка корс
 
+import authRouter from "./routes/api/auth-router.js";
 import contactsRouter from "./routes/api/contacts-router.js";
 
 const app = express();
