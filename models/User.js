@@ -26,3 +26,7 @@ const userSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+contactSchema.post("save", handleSaveError);
+contactSchema.pre("findOneAndUpdate", addUpdateSettings);
+contactSchema.post("findOneAndUpdate", handleSaveError);
