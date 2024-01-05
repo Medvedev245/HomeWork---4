@@ -13,7 +13,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRouter);
+app.use("/users/register", authRouter);
 app.use("/api/contacts", contactsRouter);
 // если прийдет любой запрос /api/contacts - ищи его в обьекте contactsRouter
 

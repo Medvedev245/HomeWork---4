@@ -18,7 +18,7 @@ import { userSigninShema, userSignupShema } from "../../models/User.js";
 const authRouter = express.Router();
 
 authRouter.post(
-  "/signup",
+  "/",
   isEmptyBody,
   validateBody(userSignupShema),
   authController.signup

@@ -4,7 +4,6 @@ import Joi from "joi";
 import { handleSaveError, addUpdateSettings } from "./hooks.js";
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$/;
-// const emailRegexp = /^\w+[a-zA-Z0-9. _-]+@[a-zA-Z0-9. -]+\. [a-zA-Z]{2,4}$/;
 
 const userSchema = new Schema(
   {
@@ -30,13 +29,13 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-// contactSchema.post("save", handleSaveError);
-// contactSchema.pre("findOneAndUpdate", addUpdateSettings);
-// contactSchema.post("findOneAndUpdate", handleSaveError);
+userSchema.post("save", handleSaveError);
+userSchema.pre("findOneAndUpdate", addUpdateSettings);
+userSchema.post("findOneAndUpdate", handleSaveError);
 
 //регистрация
 export const userSignupShema = Joi.object({
-  username: Joi.string().required(),
+  // username: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(4).required(),
 });
