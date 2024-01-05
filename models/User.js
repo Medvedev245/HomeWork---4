@@ -3,7 +3,8 @@ import Joi from "joi";
 
 import { handleSaveError, addUpdateSettings } from "./hooks.js";
 
-const emailRegexp = /^[a-zA-Z0-9. _-]+@[a-zA-Z0-9. -]+\. [a-zA-Z]{2,4}$/;
+const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$/;
+// const emailRegexp = /^\w+[a-zA-Z0-9. _-]+@[a-zA-Z0-9. -]+\. [a-zA-Z]{2,4}$/;
 
 const userSchema = new Schema(
   {

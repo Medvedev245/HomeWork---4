@@ -1,6 +1,10 @@
 // группа маршрутов на авторизацию и регистрацию
 import express from "express";
+
+import authController from "../../controllers/auth-controller.js";
+
 import { isValidId } from "../../middlewares/isValidId.js";
+
 import {
   isEmptyBody,
   isEmptyBodyPatch,
@@ -13,7 +17,12 @@ import { userSigninShema, userSignupShema } from "../../models/User.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", isEmptyBody, validateBody(userSignupShema));
+authRouter.post(
+  "/signup",
+  isEmptyBody,
+  validateBody(userSignupShema),
+  authController.signup
+);
 
 export default authRouter;
 

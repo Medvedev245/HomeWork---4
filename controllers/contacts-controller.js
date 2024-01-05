@@ -6,8 +6,9 @@
 //   updateContactById,
 // } from "../models/contacts/index.js";
 import { HttpError } from "../Helpers/index.js";
-import Contact from "../models/Contact.js";
 import { ctrlWrapper } from "../decorators/index.js";
+
+import Contact from "../models/Contact.js";
 
 import {
   contactAddSchema,
