@@ -1,16 +1,22 @@
+import bcrypt from "bcrypt";
+
 import User from "../models/User.js";
 
 import { HttpError } from "../Helpers/index.js";
 
 import { ctrlWrapper } from "../decorators/index.js";
 
+//registration
 const signup = async (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email in use");
   }
-  const newUser = await User.create(req.body);
+
+  const hashPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await User.create({ ...req.body, password: hashPassword });
   console.log(newUser);
 
   res.status(201).json({
@@ -19,6 +25,10 @@ const signup = async (req, res) => {
   });
 };
 
+//avtorization
+const signin = async (req, res) => {};
+
 export default {
   signup: ctrlWrapper(signup),
+  signin: ctrlWrapper(signin),
 };

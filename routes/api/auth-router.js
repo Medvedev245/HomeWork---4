@@ -17,11 +17,19 @@ import { userSigninShema, userSignupShema } from "../../models/User.js";
 
 const authRouter = express.Router();
 
+//регистрация нового пользователя
 authRouter.post(
-  "/",
+  "/register",
   isEmptyBody,
   validateBody(userSignupShema),
   authController.signup
+);
+
+authRouter.post(
+  "/login",
+  isEmptyBody,
+  validateBody(userSignupShema),
+  authController.signin
 );
 
 export default authRouter;
