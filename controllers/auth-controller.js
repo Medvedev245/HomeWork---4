@@ -5,13 +5,17 @@ import { HttpError } from "../Helpers/index.js";
 import { ctrlWrapper } from "../decorators/index.js";
 
 const signup = async (req, res) => {
-  console.log("1");
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (user) {
+    throw HttpError(409, "Email in use");
+  }
   const newUser = await User.create(req.body);
   console.log(newUser);
 
-  res.json({
+  res.status(201).json({
     email: newUser.email,
-    password: newUser.password,
+    subscription: newUser.subscription,
   });
 };
 
