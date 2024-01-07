@@ -26,7 +26,28 @@ const signup = async (req, res) => {
 };
 
 //avtorization
-const signin = async (req, res) => {};
+const signin = async (req, res) => {
+  const { email, password } = req.body;
+
+  //смотрим есть ли пользователь с таким мейлом
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw HttpError(401, "Email or password is wrong");
+  }
+
+  //проверяем пароль, есть ли в базе
+  const passwordCompare = await bcrypt.compare(password, user.password);
+  if (passwordCompare) {
+    throw HttpError(401, "Email or password is wrong");
+  }
+
+  // если все ок, делаем токен и отправляем
+  const token = "123.4567.890";
+
+  res.json({
+    token,
+  });
+};
 
 export default {
   signup: ctrlWrapper(signup),
