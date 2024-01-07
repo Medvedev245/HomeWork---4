@@ -1,10 +1,14 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import User from "../models/User.js";
 
 import { HttpError } from "../Helpers/index.js";
 
 import { ctrlWrapper } from "../decorators/index.js";
+
+import { JWT_SECRET } from "../config.js";
+console.log("1", JWT_SECRET);
 
 //registration
 const signup = async (req, res) => {
@@ -31,21 +35,25 @@ const signin = async (req, res) => {
 
   //смотрим есть ли пользователь с таким мейлом
   const user = await User.findOne({ email });
+  console.log(user);
   if (!user) {
-    throw HttpError(401, "Email or password is wrong");
+    throw HttpError(401, "Email or password is wrong(mail)");
   }
 
   //проверяем пароль, есть ли в базе
   const passwordCompare = await bcrypt.compare(password, user.password);
-  if (passwordCompare) {
-    throw HttpError(401, "Email or password is wrong");
+  if (!passwordCompare) {
+    throw HttpError(401, "Email or password is wrong(pass)");
   }
 
   // если все ок, делаем токен и отправляем
-  const token = "123.4567.890";
-
+  const token = "123.4567.8901";
   res.json({
     token,
+    user: {
+      email: user.email,
+      subscription: user.subscription,
+    },
   });
 };
 
