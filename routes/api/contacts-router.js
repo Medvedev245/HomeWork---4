@@ -14,9 +14,9 @@ import { isValidId } from "../../middlewares/isValidId.js";
 import { contactUpdateFavoriteShema } from "../../models/Contact.js";
 import { authenticate } from "../../middlewares/authenticate.js";
 
-const contactsRouter = express.Router(authenticate);
+const contactsRouter = express.Router();
 
-contactsRouter.use();
+contactsRouter.use(authenticate);
 
 //функция контроллер сама функция в controllers
 contactsRouter.get("/", contactsController.getAll);
