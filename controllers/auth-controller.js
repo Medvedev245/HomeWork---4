@@ -8,7 +8,7 @@ import { HttpError } from "../Helpers/index.js";
 import { ctrlWrapper } from "../decorators/index.js";
 
 import { JWT_SECRET } from "../config.js";
-console.log("1", JWT_SECRET);
+// console.log("1", JWT_SECRET);
 
 //registration
 const signup = async (req, res) => {
@@ -35,7 +35,6 @@ const signin = async (req, res) => {
 
   //смотрим есть ли пользователь с таким мейлом
   const user = await User.findOne({ email });
-  console.log(user);
   if (!user) {
     throw HttpError(401, "Email or password is wrong(mail)");
   }
@@ -47,7 +46,12 @@ const signin = async (req, res) => {
   }
 
   // если все ок, делаем токен и отправляем
-  const token = "123.4567.8901";
+  const { _id: id } = user;
+  const payload = {
+    id,
+  };
+
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "23h" });
   res.json({
     token,
     user: {

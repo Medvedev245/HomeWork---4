@@ -35,7 +35,6 @@ userSchema.post("findOneAndUpdate", handleSaveError);
 
 //регистрация
 export const userSignupShema = Joi.object({
-  // username: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(4).required(),
 });
