@@ -11,6 +11,8 @@ import {
   isEmptyBodyPut,
 } from "../../middlewares/isEmptyBody.js";
 
+import { authenticate } from "../../middlewares/authenticate.js";
+
 import { validateBody } from "../../decorators/index.js";
 
 import { userSigninShema, userSignupShema } from "../../models/User.js";
@@ -31,6 +33,8 @@ authRouter.post(
   validateBody(userSignupShema),
   authController.signin
 );
+
+authRouter.get("/current", authenticate, authController.GetCurrent);
 
 export default authRouter;
 

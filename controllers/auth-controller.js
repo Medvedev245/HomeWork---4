@@ -61,7 +61,10 @@ const signin = async (req, res) => {
   });
 };
 
+const GetCurrent = async (req, res) => {};
+
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
+  GetCurrent: ctrlWrapper(GetCurrent),
 };
