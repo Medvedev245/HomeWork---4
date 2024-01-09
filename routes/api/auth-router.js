@@ -34,8 +34,11 @@ authRouter.post(
   authController.signin
 );
 
+//получение токена по запросу
 authRouter.get("/current", authenticate, authController.GetCurrent);
 
+//логаут
+authRouter.post("/signout", authenticate, authController.signout);
 export default authRouter;
 
 // import contactsController from "../../controllers/contacts-controller.js";
