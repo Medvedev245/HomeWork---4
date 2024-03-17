@@ -67,7 +67,6 @@ const updateById = async (req, res) => {
 const deleteById = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findByIdAndDelete({
-    //repear
     _id: contactId,
     owner: _id,
   });
